@@ -1,11 +1,12 @@
 import streamlit as st
 
 def get_category_filters(df):
-    st.sidebar.header("Filters")
-    all_categories = df['Major_category'].unique()
-    selected_categories = st.sidebar.multiselect(
-        "Select Major Categories", 
-        options=all_categories, 
-        default=all_categories[:8]
+    st.sidebar.header("Filter by Category")
+    
+    categories = ["All Categories"] + list(df['Major_category'].unique())
+    selected_category = st.sidebar.selectbox(
+        "Choose a Major Category to explore:", 
+        options=categories
     )
-    return selected_categories
+    
+    return selected_category
